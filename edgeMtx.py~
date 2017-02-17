@@ -1,0 +1,6 @@
+def addPoint(m, x, y, z):
+    m.append([x,y,z,1.])
+
+def addEdge(m, x0, y0, z0, x1, y1, z1):
+    addPoint(m, x0, y0, z0)
+    addPoint(m, x1, y1, z1)
