@@ -89,6 +89,7 @@ def line8(x0, y0, x1, y1):
     return pts
 
 if __name__ == '__main__': 
+    print 'Running line test'
     img = Image(500, 500)
     xys = [(125, 0), (375, 0), (0, 125), (0, 375), (500, 125), (500, 375), (125, 500), (375, 500), (500, 500), (0, 0), (250, 0), (0, 250), (250, 500), (500, 250), (0, 500), (500, 0)]
     pts = [pt for coords in xys for pt in line(250, 250, *coords)]
