@@ -26,6 +26,7 @@ def drawEdges(m, image, color=(255, 0, 0)):  # draws the edges to an image
 if __name__ == '__main__':
     m1 = [[2, 2, 3], [3, 2, 2]]
     m2 = [[1, 5], [6.5, 4], [1, -0.7]]
+    m3 = [[1, 2, 3, 1], [5, 2, -1, 3], [-1, -5, 3, 6], [2, 4, -7, 2]]
     k1 = 2.5
     k2 = 3.5
     id3 = matrix.id(3)
@@ -64,14 +65,25 @@ if __name__ == '__main__':
     m = edgemtx()
     addEdge(m, 1, 1, 1, 2, 3, 2.5)
     print matrix.toStr(m)
+    print 'm3'
+    print matrix.toStr(m3)
+    print 'Transforming edge matrix'
+    print matrix.toStr(matrix.multiply(m3, m))
     
     img = Image(500, 500)
+    tr = [[0.966623, 0, 0, 0], 
+                    [0.083753, 1.084821, 0, 0.000911], 
+                    [0, 0, 1, 0], 
+                    [0, 0, 0, 1]]
     for loc in range(0, 500, 4):
         edges = edgemtx()
-        addEdge(edges, 125, loc, 0, loc + 1, 375, 0)
-        addEdge(edges, loc + 1, 375, 0, 375, 500 - loc - 2, 0)
-        addEdge(edges, 375, 500 - loc - 2, 0, 500 - loc - 3, 125, 0)
-        addEdge(edges, 500 - loc - 3, 125, 0, 125, loc + 4, 0)
+        addEdge(edges, 125, loc, 100, loc + 1, 375, 100)
+        addEdge(edges, loc + 1, 375, 100, 375, 500 - loc - 2, 100)
+        addEdge(edges, 375, 500 - loc - 2, 100, 500 - loc - 3, 125, 100)
+        addEdge(edges, 500 - loc - 3, 125, 100, 125, loc + 4, 100)
+        print edges
+        edges = matrix.multiply(tr, edges)
+        print edges
         drawEdges(edges, img, (255 - loc / 2, loc / 2, 127))  # crossfade r + g
     
     img.display()
