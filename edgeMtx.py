@@ -71,19 +71,12 @@ if __name__ == '__main__':
     print matrix.toStr(matrix.multiply(m3, m))
     
     img = Image(500, 500)
-    tr = [[0.966623, 0, 0, 0], 
-                    [0.083753, 1.084821, 0, 0.000911], 
-                    [0, 0, 1, 0], 
-                    [0, 0, 0, 1]]
     for loc in range(0, 500, 4):
         edges = edgemtx()
         addEdge(edges, 125, loc, 100, loc + 1, 375, 100)
         addEdge(edges, loc + 1, 375, 100, 375, 500 - loc - 2, 100)
         addEdge(edges, 375, 500 - loc - 2, 100, 500 - loc - 3, 125, 100)
         addEdge(edges, 500 - loc - 3, 125, 100, 125, loc + 4, 100)
-        print edges
-        edges = matrix.multiply(tr, edges)
-        print edges
         drawEdges(edges, img, (255 - loc / 2, loc / 2, 127))  # crossfade r + g
     
     img.display()
